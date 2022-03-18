@@ -21,6 +21,8 @@
     background-color: white;
     position: relative;
     cursor: pointer;
+    transition: .7s;
+    z-index: 9;
 }
 
 .hamburguer-icon::before {
@@ -31,6 +33,7 @@
     position: absolute;
     bottom: 8px;
     cursor: pointer;
+    transition: .7s;
 }
 
 .hamburguer-icon::after {
@@ -41,6 +44,29 @@
     position: absolute;
     top: 8px;
     cursor: pointer;
+    transition: .7s;
+}
+
+.close-btn {
+    position: relative;
+    background: transparent;
+    transition: .7s;
+    z-index: 9;
+}
+
+.close-btn::before {
+    top: 0;
+    transform: rotate(45deg);
+    transition: .7s;
+    background-color: #cdcdcd;
+
+}
+
+.close-btn::after {
+    top: 0;
+    transform: rotate(-45deg);
+    transition: .7s;
+    background-color: #cdcdcd;
 }
 
 .logo {
@@ -52,10 +78,57 @@
 
 .hero-mobile {
     width: 100%;
+    display: none;
 }
 
-.menu-desktop {
-    display: none;
+.menu-mobile {
+    display: block;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: 800;
+    font-size: 12px;
+    transition: .7s;
+    height: 0;
+    visibility: hidden;
+}
+
+.menu-mobile li {
+    margin-left: 1rem;
+}
+
+.menu-mobile li:last-child {
+    margin-right: 1.4rem;
+}
+
+.overlay {
+    display: block;
+    height: 0px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: .5;
+    transition: .7s;
+
+}
+
+.openOverlay {
+    transition: .7s;
+    height: 100vh;
+}
+
+.openMenu {
+    visibility: visible;
+    transition: .7s;
+    height: 6rem;
 }
 
 .hero-desktop {
@@ -65,7 +138,7 @@
 .arrows-mobile {
     width: 30%;
     position: absolute;
-    bottom: 5px;
+    bottom: 0;
     right: 0;
     display: flex;
 }
@@ -146,21 +219,52 @@ main > img {
 .text {
     font-size: 12px;
     color: hsl(0, 0%, 63%);
-    /* color: #c5c5c5; */
     margin: 1rem 0 2rem 0;
     line-height: 1.2rem;
 }
 
 .light-img {
-    height: 100%;
+    position: absolute;
 }
 
 .none {
     display: none;
 }
 
-.visible {
+.visible-m {
     display: block;
+    animation: twinkle 1s;
+}
+
+.fadein {
+    animation: fadein 1s;
+}
+
+.twinkle {
+    animation: twinkle 1s;
+}
+
+
+@keyframes fadein {
+    0% {
+        transform: translateX(541px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -190,7 +294,6 @@ main > img {
     }
  
     .hero-desktop {
-        /* display: block; */
         width: 100%;
         margin: 0;
     }
@@ -199,18 +302,20 @@ main > img {
         width: 100%;
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 9;
     }    
 
     .menu-desktop {
-        display: block;
         list-style: none;
         color: #fff;
         display: flex;
         margin-left: 9rem;
+        background: none;
     }
 
     .menu-desktop li {
-        margin-right: 1.8rem;
+        margin-right: 1rem;
         cursor: pointer;
         position: relative;
     }
@@ -229,6 +334,21 @@ main > img {
     .menu-desktop li:hover::after {
         background: #fff;
         left: 0;
+    }
+
+    .menu-mobile {
+        display: flex;
+        justify-content: initial;
+        font-weight: 300;
+        position: relative;
+        padding: 0;
+        font-size: 1rem;
+        visibility: visible;
+    } 
+
+ 
+    .overlay {
+        display: none;
     }
 
     .hero-mobile {
@@ -282,9 +402,18 @@ main > img {
 
     }
     
-    .light-img .dark-img {
+    .light-img, .dark-img {
         height: 100%;
         width: 100%;
+    }
+
+    .light-img {
+        position: initial;
+    }
+
+    .visible-d {
+        display: block;
+        animation: fadein 1s ;
     }
 
 }
