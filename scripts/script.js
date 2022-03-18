@@ -151,7 +151,6 @@ arrowsD.forEach((item) => {
 });
 
 
-//ACHAR UM JEITO DE DEIXAR OS TEXTOS DINIAMICOS
 
 //CAOUSEL
 const menuMobile = {
